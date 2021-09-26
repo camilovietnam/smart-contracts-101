@@ -32,4 +32,8 @@ contract Lottery {
     function getPlayers () public view returns (address []) {
         return players;
     }
+
+    function getOwner() public view returns (address) {
+        return owner;
+    }
 }
