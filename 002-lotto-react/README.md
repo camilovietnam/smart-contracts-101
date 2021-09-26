@@ -2,14 +2,11 @@
 
 This app was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## How to use
+### How to use
 
-In the project directory, you can run:
-
-### `npm run deploy'
-
-This will deploy the contract, and print the ABI and contract address to the console. The address will be used in the `lottery.js` file. If you make any changes to the contract, make sure you redeploy and update the new contract address in the mentioned file.
-
-### `npm run start`
-
+In the project directory, you can run `npm run start`. 
 This will start the HTTP server and serve the app on address [http://localhost:3000](http://localhost:3000)
+
+### Important!
+
+You need to copy the EBI and address of the contract that you get from the code in folder `001 ...`, after running the `node deploy.js` code, into the `src/loadContract.js` file. The committed information represents the contract I used during development, and might no longer be available, or might even be incorrect at the time you clone the repository.
