@@ -2,6 +2,8 @@
 The contract code is inside the file `/contracts/Lottery.sol`
 Available operations: 
 
+**Updating environment data**: Copy the file `.env.example` to `.env` and update the information inside of it. We need a passkey in order to unlock the address which will deploy the contract, as this operation will consume some of your Ether and it is therefore necessary to authenticate. Read the next section to know how to deploy and get your contract's address. 
+
 **Compile and deploy**: Run command `node deploy.js`. The output of the terminal will show the contract's ABI and the address (assuming it was successful). 
 
 Example:
