@@ -1,10 +1,10 @@
 {
-  "name": "inbox",
+  "name": "lottery",
   "version": "1.0.0",
   "description": "This is a basic smart contract",
   "main": "Lottery.test.js",
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/mocha/bin/mocha test"
   },
   "author": "camilovietnam",
   "license": "ISC",
