@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 class Footer extends Component {
+    static getDerivedStateFromProps(props, state) {
+        return {
+            chooseWinner: props.chooseWinner
+        }
+    }
+
     render () {
         return (
             <footer className="page-footer dark">
@@ -28,6 +34,12 @@ class Footer extends Component {
                                 <li><a href="https://www.udemy.com">Udemy Course</a></li>
                                 <li><a href="https://www.youtube.com">Youtube Course</a></li>
                                 <li><a href="https://www.ethereum.org">Ethereum Documentation</a></li>
+                            </ul>
+                        </div>
+                        <div className="col-sm-3">
+                            <h5>Administration</h5>
+                            <ul>
+                                <li><a href="https://www.udemy.com" onClick={ this.state.chooseWinner }>Choose winner</a></li>
                             </ul>
                         </div>
                     </div>

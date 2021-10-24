@@ -1,6 +1,23 @@
 import React, {Component} from 'react';
+import PlayerRow from "./PlayerRow";
 
 class Players extends Component {
+    constructor (props) {
+        super(props)
+
+        this.state = {
+            players: props.players,
+            pot: props.pot,
+        }
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        return {
+            players: props.players,
+            pot: props.pot,
+        }
+    }
+
     render() {
         return (
             <main className="page shopping-cart-page">
@@ -12,70 +29,27 @@ class Players extends Component {
                         </div>
                         <div className="content">
                             <div className="row g-0">
-                                <div className="col-md-12 col-lg-8">
+                                <div className="col-md-12 col-lg-9">
                                     <div className="items">
-                                        <div className="product">
-                                            <div className="row justify-content-center align-items-center">
-                                                <div className="col-md-3">
-                                                    <div className="product-image">
-                                                        <img
-                                                        className="img-fluid d-block mx-auto image"
-                                                        src="assets/img/tech/image2.jpg"
-                                                        alt="User"
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-5 product-info">
-                                                    <a className="product-name" href="/">
-                                                        Lorem Ipsum dolor
-                                                    </a>
-                                                </div>
-                                                <div className="col-6 col-md-2 price"><span>$120</span></div>
-                                            </div>
-                                        </div>
-                                        <div className="product">
-                                            <div className="row justify-content-center align-items-center">
-                                                <div className="col-md-3">
-                                                    <div className="product-image">
-                                                        <img
-                                                        className="img-fluid d-block mx-auto image"
-                                                        src="assets/img/tech/image2.jpg"
-                                                        alt={"Product"} />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-5 product-info">
-                                                    <a className="product-name" href="/">
-                                                        Lorem Ipsum dolor
-                                                    </a>
-                                                </div>
-                                                <div className="col-6 col-md-2 price"><span>$120</span></div>
-                                            </div>
-                                        </div>
-                                        <div className="product">
-                                            <div className="row justify-content-center align-items-center">
-                                                <div className="col-md-3">
-                                                    <div className="product-image">
-                                                        <img
-                                                        className="img-fluid d-block mx-auto image"
-                                                        src="assets/img/tech/image2.jpg"
-                                                        alt={"Product"} />
-                                                    </div>
-                                                </div>
-                                                <div className="col-md-5 product-info">
-                                                    <a className="product-name" href="/">
-                                                        Lorem Ipsum dolor
-                                                    </a>
-                                                </div>
-                                                <div className="col-6 col-md-2 price"><span>$120</span></div>
-                                            </div>
-                                        </div>
+                                        { this.state.players.map((player, index )=> {
+                                            return (
+                                                <PlayerRow key={index} player={player} />
+                                            )
+                                        }) }
                                     </div>
                                 </div>
-                                <div className="col-md-12 col-lg-4">
+                                <div className="col-md-12 col-lg-3">
                                     <div className="summary">
                                         <h3>Summary</h3>
-                                        <h4><span className="text">Players</span><span className="price">14</span></h4>
-                                        <h4><span className="text">Amount</span><span className="price">$1500</span>
+                                        <h4><span className="text">Players</span>
+                                            <span className="price">
+                                                { this.state.players.length }
+                                            </span>
+                                        </h4>
+                                        <h4><span className="text">Amount</span>
+                                            <span className="price">
+                                                { this.state.pot } Eth
+                                            </span>
                                         </h4>
                                     </div>
                                 </div>
