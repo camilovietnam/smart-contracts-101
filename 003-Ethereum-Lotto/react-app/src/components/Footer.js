@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 class Footer extends Component {
+    state = {}
+
     static getDerivedStateFromProps(props, state) {
         return {
             chooseWinner: props.chooseWinner

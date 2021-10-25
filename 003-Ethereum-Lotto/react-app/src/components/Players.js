@@ -8,6 +8,7 @@ class Players extends Component {
         this.state = {
             players: props.players,
             pot: props.pot,
+            web3: props.web3,
         }
     }
 
@@ -15,6 +16,7 @@ class Players extends Component {
         return {
             players: props.players,
             pot: props.pot,
+            web3: props.web3,
         }
     }
 
@@ -33,7 +35,7 @@ class Players extends Component {
                                     <div className="items">
                                         { this.state.players.map((player, index )=> {
                                             return (
-                                                <PlayerRow key={index} player={player} />
+                                                <PlayerRow key={index} player={player} web3={this.state.web3}/>
                                             )
                                         }) }
                                     </div>

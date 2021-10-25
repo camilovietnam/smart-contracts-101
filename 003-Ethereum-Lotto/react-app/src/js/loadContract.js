@@ -1,8 +1,21 @@
 import loadweb3 from './loadweb3'
 
-// let address = "0x631c5611d7bc0669c4494fbe069ff3886a0eaa94"
-let address = "0x631c5611d7bc0669c4494fbe069ff3886a0eaa94"
+let address = "0x76135B95E33b20fe5fF0F9A12EF1e712c534e668"
 const abi = [
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getBalance",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
   {
     "constant": false,
     "inputs": [],
@@ -60,12 +73,40 @@ const abi = [
     "type": "function"
   },
   {
+    "constant": true,
+    "inputs": [],
+    "name": "getWinners",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "constant": false,
     "inputs": [],
     "name": "enter",
     "outputs": [],
     "payable": true,
     "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getPrizes",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -77,20 +118,6 @@ const abi = [
       }
     ],
     "name": "players",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "lastWinner",
     "outputs": [
       {
         "name": "",

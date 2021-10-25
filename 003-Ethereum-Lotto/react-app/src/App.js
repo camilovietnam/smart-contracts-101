@@ -23,6 +23,7 @@ class App extends Component {
     state = {
         pot: 0,
         players: [],
+        web3: null,
     }
 
     async AppLoadWeb3() {
@@ -43,6 +44,7 @@ class App extends Component {
         this.setState({
             pot,
             players,
+            web3
         })
 
         console.log(`Using web3 version ${web3.version}`)
@@ -137,7 +139,8 @@ class App extends Component {
                         <Route path="/players">
                             <Players
                                 players={ this.state.players }
-                                pot = { this.state.pot } />
+                                pot={ this.state.pot }
+                                web3={ this.state.web3 } />
                         </Route>
                         <Route path="/winners">
                             <Winners />

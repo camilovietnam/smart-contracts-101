@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
-import loadContract from "../js/loadContract";
+import { faCheck, faTimes, faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 class Index extends Component {
     state = {
@@ -71,7 +70,7 @@ class Index extends Component {
                             </button>
                         </div>
                         <p style={{ color: 'var(--bs-success)', fontWeight: 'bold' }} className={"msg-registering"}>
-                            <FontAwesomeIcon icon={faCheck} style={{ marginRight: '10px' }} />
+                            <FontAwesomeIcon icon={faSpinner} className={"fa-spin"} style={{ marginRight: '10px' }} />
                             Registering, please wait...
                         </p>
                         <p style={{ color: 'var(--bs-success)', fontWeight: 'bold' }} className={"msg-registered"}>
