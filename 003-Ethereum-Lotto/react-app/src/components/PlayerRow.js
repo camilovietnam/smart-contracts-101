@@ -64,7 +64,7 @@ class PlayerRow extends Component {
                         {
                             this.state.bet
                                 ? <span>{this.state.bet}Ξ</span>
-                            : <FontAwesomeIcon icon={faSpinner} className={"fa-spin"}/>
+                                : <FontAwesomeIcon icon={faSpinner} className={"fa-spin"}/>
                         }
                     </div>
                 </div>

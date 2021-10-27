@@ -23,6 +23,8 @@ class App extends Component {
     state = {
         pot: 0,
         players: [],
+        winners: [],
+        prizes: [],
         web3: null,
     }
 
@@ -40,20 +42,21 @@ class App extends Component {
         let pot = await web3.eth.getBalance(lottery.options.address)
         pot = web3.utils.fromWei(pot, "ether")
         const players = await lottery.methods.getPlayers().call()
+        const winners = await lottery.methods.getWinners().call()
+        const prizes = await lottery.methods.getPrizes().call()
 
         this.setState({
             pot,
             players,
-            web3
+            web3,
+            winners,
+            prizes,
         })
 
         console.log(`Using web3 version ${web3.version}`)
         // const owner = await lottery.methods.getOwner().call()
         // const accounts = await window.ethereum.request({ method: 'eth_accounts' })
-        // const message = 'Waiting for submission'
-        //
-        // this.setState({ owner, players, accounts, pot, message })
-        //
+
     }
 
     componentDidMount() {
@@ -103,12 +106,15 @@ class App extends Component {
         const web3 = await this.AppLoadWeb3()
         const lottery = await loadContract()
         const players = await lottery.methods.getPlayers().call()
+        const winners = await lottery.methods.getWinners().call()
+
         let pot = await web3.eth.getBalance(lottery.options.address)
         pot = web3.utils.fromWei(pot, "ether")
 
         this.setState({
             pot,
-            players
+            players,
+            winners,
         })
     }
 
@@ -142,9 +148,11 @@ class App extends Component {
                                 pot={ this.state.pot }
                                 web3={ this.state.web3 } />
                         </Route>
+
                         <Route path="/winners">
-                            <Winners />
+                            <Winners winners={ this.state.winners } prizes={ this.state.prizes } web3={ this.state.web3 }/>
                         </Route>
+
                         <Route path="/">
                             <Index pot={ this.state.pot }
                                    onFormSubmit={ this.onFormSubmit }

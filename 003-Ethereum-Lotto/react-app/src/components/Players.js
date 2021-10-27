@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import PlayerRow from "./PlayerRow";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 
 class Players extends Component {
     constructor (props) {
@@ -33,6 +35,20 @@ class Players extends Component {
                             <div className="row g-0">
                                 <div className="col-md-12 col-lg-9">
                                     <div className="items">
+                                        <div className="product">
+                                            <div className="row bg-dark text-white text-center justify-content-center align-items-center">
+                                                <div className="col-md-3">
+                                                    <h4>Avatar</h4>
+                                                </div>
+                                                <div className="col-md-5">
+                                                    <h4>Address</h4>
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <h4>Accumulated Bet</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         { this.state.players.map((player, index )=> {
                                             return (
                                                 <PlayerRow key={index} player={player} web3={this.state.web3}/>
@@ -50,7 +66,7 @@ class Players extends Component {
                                         </h4>
                                         <h4><span className="text">Amount</span>
                                             <span className="price">
-                                                { this.state.pot } Eth
+                                                { this.state.pot }Ξ
                                             </span>
                                         </h4>
                                     </div>

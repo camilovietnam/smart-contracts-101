@@ -1,6 +1,6 @@
 import loadweb3 from './loadweb3'
 
-let address = "0x76135B95E33b20fe5fF0F9A12EF1e712c534e668"
+let address = "0xEE1490968B3febCA5eBeDe3c890e8535E8f66E1B"
 const abi = [
   {
     "constant": true,
