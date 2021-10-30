@@ -30,7 +30,7 @@ class Footer extends Component {
                         <div className="col-sm-3">
                             <h5>Social Links</h5>
                             <ul>
-                                <li><a href="https://www.twitter.com">Twitter</a></li>
+                                <li><a href="https://www.twitter.com/digitarum">Twitter</a></li>
                                 <li><a href="https://www.facebook.com">Facebook</a></li>
                                 <li><a href="https://www.youtube.com">YouTube</a></li>
                             </ul>
@@ -53,10 +53,8 @@ class Footer extends Component {
                                         winner</a></li>
                                 </ul>
                             </div>)
-                            : <div></div>
+                            : ''
                         }
-
-
                     </div>
                 </div>
                 <div className="footer-copyright">

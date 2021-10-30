@@ -42,10 +42,9 @@ class Winners extends Component {
                                             </div>
                                         </div>
 
-
                                         { this.state.winners.map((winner, index) => {
                                             return (
-                                                <div className="product">
+                                                <div className="product" key={index}>
                                                     <div className="row justify-content-center align-items-center">
                                                         <div className="col-md-3">
                                                             <div className="product-image">
@@ -80,9 +79,12 @@ class Winners extends Component {
                                         <h4><span className="text">Amount</span><span className="price">
                                             { this.state.web3 ?  (web3 => {
                                                 const sum = this.state.prizes.reduce((prev, current) => {
-                                                    return prev + current
+                                                    return prev + parseInt(current)
                                                 }, 0)
+
+                                                console.log(web3.utils.fromWei(sum.toString() ))
                                                 return web3.utils.fromWei(sum.toString(), "ether")
+
                                             })(this.state.web3) : '' }Ξ
                                         </span>
                                         </h4>
