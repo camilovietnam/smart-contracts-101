@@ -9,3 +9,4 @@ You can visit each folder in Github and find more instructions on the README.md 
 
 - [001 Lottery](https://github.com/camilovietnam/smart-contracts-101/tree/master/001%20Lottery): Contains basic operations such as compiling and deploying the contract, using a local network (ganache).
 - [002-lotto-react](https://github.com/camilovietnam/smart-contracts-101/tree/master/002-lotto-react): (I changed naming convention because you're ugly and I hate you). In this folder you will find a basic Frontend React App for working with the contract 
+- [003-lotto-react-v2](https://github.com/camilovietnam/smart-contracts-101/tree/master/003-Ethereum-Lotto): This is my clean version of the 002 lottery project. I decided to make it a little bit more elegant, and include all the things I would include in a real project. 
