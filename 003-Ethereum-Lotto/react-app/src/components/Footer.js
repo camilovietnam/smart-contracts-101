@@ -4,8 +4,13 @@ class Footer extends Component {
     state = {}
 
     static getDerivedStateFromProps(props, state) {
+        const isManager = props.accounts.reduce((current, address) => {
+            return current || (address.toLowerCase() === props.owner.toLowerCase())
+        }, false)
+
         return {
-            chooseWinner: props.chooseWinner
+            chooseWinner: props.chooseWinner,
+            isManager,
         }
     }
 
@@ -38,12 +43,20 @@ class Footer extends Component {
                                 <li><a href="https://www.ethereum.org">Ethereum Documentation</a></li>
                             </ul>
                         </div>
-                        <div className="col-sm-3">
-                            <h5>Administration</h5>
-                            <ul>
-                                <li><a href="https://www.udemy.com" onClick={ this.state.chooseWinner }>Choose winner</a></li>
-                            </ul>
-                        </div>
+
+
+                        {this.state.isManager ?
+                            (<div className="col-sm-3">
+                                <h5>Administration</h5>
+                                <ul>
+                                    <li><a href="https://www.udemy.com" onClick={this.state.chooseWinner}>Choose
+                                        winner</a></li>
+                                </ul>
+                            </div>)
+                            : <div></div>
+                        }
+
+
                     </div>
                 </div>
                 <div className="footer-copyright">

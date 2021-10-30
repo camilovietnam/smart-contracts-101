@@ -26,6 +26,8 @@ class App extends Component {
         winners: [],
         prizes: [],
         web3: null,
+        accounts: [],
+        owner: '',
     }
 
     async AppLoadWeb3() {
@@ -44,6 +46,8 @@ class App extends Component {
         const players = await lottery.methods.getPlayers().call()
         const winners = await lottery.methods.getWinners().call()
         const prizes = await lottery.methods.getPrizes().call()
+        const accounts = await window.ethereum.request({ method: 'eth_accounts' })
+        const owner = await lottery.methods.getOwner().call()
 
         this.setState({
             pot,
@@ -51,11 +55,11 @@ class App extends Component {
             web3,
             winners,
             prizes,
+            accounts,
+            owner,
         })
 
         console.log(`Using web3 version ${web3.version}`)
-        // const owner = await lottery.methods.getOwner().call()
-        // const accounts = await window.ethereum.request({ method: 'eth_accounts' })
 
     }
 
@@ -163,7 +167,10 @@ class App extends Component {
                     </Switch>
                 </Router>
 
-                <Footer chooseWinner={ this.chooseWinner }/>
+                <Footer chooseWinner={ this.chooseWinner }
+                    accounts = { this.state.accounts }
+                    owner = { this.state.owner }
+                />
             </div>
         );
     }

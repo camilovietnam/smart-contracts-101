@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import PlayerRow from "./PlayerRow";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 
 class Players extends Component {
     constructor (props) {
