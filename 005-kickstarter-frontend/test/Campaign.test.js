@@ -77,4 +77,54 @@ describe('Campaigns', () => {
         const request = await campaign.methods.requests(0).call()
         assert.strictEqual('Buy food', request.description)
     })
+
+    it('processes requests', async () => {
+        // accounts[1] contributes to campaign
+        await campaign.methods.contribute().send({
+            from: accounts[1],
+            value: web3.utils.toWei('10', 'ether')
+        })
+
+        // assert accounts[1] is registered as approver
+        const isApprover = await campaign.methods.approvers(accounts[1]).call()
+        assert.ok(isApprover)
+
+        let initialBalance = await web3.eth.getBalance(accounts[2])
+        initialBalance = web3.utils.fromWei(initialBalance, 'ether')
+
+        // accounts[0] create request
+        await campaign.methods.createRequestForMoney('Pay food', web3.utils.toWei('5', 'ether'), accounts[2])
+            .send({ from: accounts[0],gas: 1000000 })
+
+        // assert request exists
+        let request = await campaign.methods.requests(0).call()
+        assert.ok(request)
+
+        // accounts[1] approves request
+        await campaign.methods.approveRequest(0).send({
+            from: accounts[1],
+            gas: 1000000
+        })
+
+        // verify one person approved
+        request = await campaign.methods.requests(0).call()
+        assert.ok(request.approvalCount > 0)
+
+        // accounts[0] finalizes request
+        await campaign.methods.finalizeRequestForMoney(0).send({
+            from: accounts[0],
+            gas: 1000000
+        })
+
+        // assert request was paid
+        request = await campaign.methods.requests(0).call()
+        assert.ok(request.requestPaid)
+
+        // confirm accounts[2] received the money
+        let finalBalance = await web3.eth.getBalance(accounts[2])
+        finalBalance = web3.utils.fromWei(finalBalance, 'ether')
+        finalBalance = parseFloat(finalBalance)
+
+        assert.ok(finalBalance > initialBalance)
+    })
 })
