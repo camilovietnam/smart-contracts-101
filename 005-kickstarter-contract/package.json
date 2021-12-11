@@ -1,7 +1,7 @@
 {
   "name": "kickstarter",
   "version": "1.0.0",
-  "description": "This is the frontend of the Kickstarter example project",
+  "description": "This is the contract of the Kickstarter example project",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
