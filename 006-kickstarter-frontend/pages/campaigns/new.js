@@ -3,6 +3,7 @@ import Layout from '../../components/Layout'
 import { Form, Button, Input, Message } from "semantic-ui-react";
 import factory from "../../ethereum/factory"
 import web3 from '../../ethereum/web3'
+import { Router } from '../../routes'
 
 class CampaignNew extends Component {
     state = {
@@ -15,11 +16,14 @@ class CampaignNew extends Component {
     onSubmit = async event => {
         event.preventDefault()
         this.setState({ loading: true, hasError: false })
+
         try {
             const accounts = await web3.eth.getAccounts()
             await factory.methods.createCampaign(this.state.minContribution).send({
                 from: accounts[0]
             })
+
+            Router.pushRoute('/')
         } catch (err) {
             this.setState({ hasError: true })
             this.setState({
@@ -47,6 +51,7 @@ class CampaignNew extends Component {
                     </Form.Field>
 
                     <Button loading={ this.state.loading } primary>Create a new Campaign</Button>
+
                     {this.state.hasError &&
                         <Message error header={"Error Creating Campaign"} content={this.state.errorMessage} />
                     }
