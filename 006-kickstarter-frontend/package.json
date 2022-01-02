@@ -22,7 +22,7 @@
     "jquery": "^3.6.0",
     "mocha": "^4.1.0",
     "next": "^4.1.4",
-    "next-routes": "^1.2.0",
+    "next-routes": "^1.4.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "semantic-ui-css": "^2.4.1",
