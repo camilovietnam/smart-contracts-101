@@ -31,10 +31,11 @@ class Index extends Component{
         return (
             <Layout>
                 <h3>Open Campaigns</h3>
-                <Button content={"Create campaign"}
+                <Button as={'a'} content={"Create campaign"}
                     icon={"add circle"}
                     primary
                     floated={"right"}
+                    href={"/campaigns/new"}
                 />
                 { this.renderCampaigns() }
             </Layout>
