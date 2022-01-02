@@ -30,7 +30,6 @@ class Index extends Component{
     render() {
         return (
             <Layout>
-                <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2/dist/semantic.min.css" rel="stylesheet" />
                 <h3>Open Campaigns</h3>
                 <Button content={"Create campaign"}
                     icon={"add circle"}

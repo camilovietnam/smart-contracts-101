@@ -32,7 +32,7 @@ beforeEach(async() => {
 })
 
 describe('Campaigns', () => {
-    it('deploys a factory and a campaign', () => {
+    it('deploys a factory and a campaigns', () => {
         assert.ok(factory.options.address)
         assert.ok(campaign.options.address)
     })
@@ -79,7 +79,7 @@ describe('Campaigns', () => {
     })
 
     it('processes requests', async () => {
-        // accounts[1] contributes to campaign
+        // accounts[1] contributes to campaigns
         await campaign.methods.contribute().send({
             from: accounts[1],
             value: web3.utils.toWei('10', 'ether')
