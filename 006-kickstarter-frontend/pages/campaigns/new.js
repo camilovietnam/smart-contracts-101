@@ -7,27 +7,30 @@ import web3 from '../../ethereum/web3'
 class CampaignNew extends Component {
     state = {
         minContribution: '',
-        errorMessage: ''
+        errorMessage: '',
+        loading: false,
+        hasError: false,
     }
 
     onSubmit = async event => {
         event.preventDefault()
+        this.setState({ loading: true, hasError: false })
         try {
             const accounts = await web3.eth.getAccounts()
             await factory.methods.createCampaign(this.state.minContribution).send({
                 from: accounts[0]
             })
         } catch (err) {
+            this.setState({ hasError: true })
             this.setState({
                 errorMessage: err.message
             })
-            console.log(this.state)
         }
+
+        this.setState({ loading: false })
     }
 
     render () {
-        console.log("Render again", Date.now())
-        console.log("The error message is ", this.state.errorMessage)
         return (
             <Layout>
                 <h3>Create a Campaign</h3>
@@ -43,9 +46,11 @@ class CampaignNew extends Component {
                             })}/>
                     </Form.Field>
 
-                    <Button primary>Create a new Campaign</Button>
+                    <Button loading={ this.state.loading } primary>Create a new Campaign</Button>
+                    {this.state.hasError &&
+                        <Message error header={"Error Creating Campaign"} content={this.state.errorMessage} />
+                    }
 
-                    <Message error header={"Error Creating Campaign"} content={this.state.errorMessage} />
                 </Form>
             </Layout>
         )
