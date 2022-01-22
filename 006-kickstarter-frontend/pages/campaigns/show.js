@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Card, Grid } from 'semantic-ui-react'
+import { Card, Grid, Button } from 'semantic-ui-react'
 import Layout from '../../components/Layout'
 import LoadCampaign from '../../ethereum/campaign'
 import web3 from '../../ethereum/web3'
 import ContributeForm from '../../components/ContributeForm'
+import { Link } from '../../routes'
 
 class CampaignShow extends Component {
     state = {
@@ -32,12 +33,24 @@ class CampaignShow extends Component {
         return (
             <Layout>
                 <Grid>
-                    <Grid.Column width={9}>
-                        {this.renderCards()}
-                    </Grid.Column>
-                    <Grid.Column width={7}>
-                        <ContributeForm campaignAddress={this.props.campaignAddress} />
-                    </Grid.Column>
+                    <Grid.Row>
+                        <Grid.Column width={9}>
+                            {this.renderCards()}
+
+                        </Grid.Column>
+                        <Grid.Column width={7}>
+                            <ContributeForm campaignAddress={this.props.campaignAddress} />
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column>
+                            <Link route={`/campaigns/${this.props.campaignAddress}/requests`}>
+                                <a>
+                                    <Button primary>View All Requests</Button>
+                                </a>
+                            </Link>
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
             </Layout>
         )
