@@ -2,13 +2,9 @@ import React, {Component} from 'react'
 import factory from '../ethereum/factory'
 import { Card, Button } from 'semantic-ui-react'
 import Layout from '../components/Layout'
+import { Link } from '../routes'
 
 class Index extends Component{
-    // We don't need this because we are using NextJS
-    // async componentDidMount() {
-    //
-    // }
-
     static async getInitialProps() {
         const campaigns = await factory.methods.getCampaigns().call()
         return { campaigns }
@@ -18,7 +14,10 @@ class Index extends Component{
         const items = this.props.campaigns.map(address => {
             return {
                 header: address,
-                description: <a>View Campaign</a>,
+                description: 
+                    <Link route={`campaigns/${address}`}>
+                        <a>View Campaign</a>
+                    </Link>,
                 meta: "Nothing",
                 fluid: true,
             }
@@ -31,12 +30,15 @@ class Index extends Component{
         return (
             <Layout>
                 <h3>Open Campaigns</h3>
-                <Button as={'a'} content={"Create campaign"}
-                    icon={"add circle"}
-                    primary
-                    floated={"right"}
-                    href={"/campaigns/new"}
-                />
+                <Link route="/campaigns/new">
+                    <a>
+                        <Button as={'a'} content={"Create campaign"}
+                        icon={"add circle"}
+                        primary
+                        floated={"right"}
+                        href={"/campaigns/new"} />
+                    </a> 
+                </Link>
                 { this.renderCampaigns() }
             </Layout>
         )
