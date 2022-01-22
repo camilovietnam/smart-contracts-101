@@ -4,11 +4,11 @@ import Layout from '../../components/Layout'
 import LoadCampaign from '../../ethereum/campaign'
 import web3 from '../../ethereum/web3'
 import ContributeForm from '../../components/ContributeForm'
- 
-class CampaignShow extends Component { 
+
+class CampaignShow extends Component {
     state = {
-        minimumContribution: 0, 
-        balance: 0, 
+        minimumContribution: 0,
+        balance: 0,
         pendingRequests: 0,
         countContributors: 0,
         manager: null,
@@ -18,7 +18,7 @@ class CampaignShow extends Component {
         const campaign = await LoadCampaign(props.query.address)
         const summary = await campaign.methods.getSummary().call()
 
-        return { 
+        return {
             minimumContribution: summary[0],
             balance: summary[1],
             countPendingRequests: summary[2],
@@ -28,7 +28,7 @@ class CampaignShow extends Component {
         }
     }
 
-    render() { 
+    render() {
         return (
             <Layout>
                 <Grid>
@@ -36,14 +36,14 @@ class CampaignShow extends Component {
                         {this.renderCards()}
                     </Grid.Column>
                     <Grid.Column width={7}>
-                        <ContributeForm campaignAddress={ this.state.campaignAddress }/>
+                        <ContributeForm campaignAddress={this.props.campaignAddress} />
                     </Grid.Column>
                 </Grid>
             </Layout>
         )
     }
 
-    renderCards() { 
+    renderCards() {
         const items = [
             {
                 header: this.props.manager,
@@ -73,7 +73,7 @@ class CampaignShow extends Component {
             },
         ]
 
-        return <Card.Group items={ items } />
+        return <Card.Group items={items} />
     }
 }
 
