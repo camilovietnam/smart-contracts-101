@@ -27,13 +27,20 @@ class RequestIndex extends Component {
                 })
             })
         )
-        return { address, requests, requestCount }
+        const totalApprovers = await campaign.methods.approversCount().call()
+
+        return { address, requests, requestCount, totalApprovers }
     }
 
     renderRows() {
         return this.props.requests.map((request, index) => {
             return (
-                <RequestRow request={request} index={index} key={index} address={this.props.address} />
+                <RequestRow
+                    request={request}
+                    index={index}
+                    key={index}
+                    address={this.props.address}
+                    totalApprovers={this.props.totalApprovers} />
             )
         })
     }
@@ -44,6 +51,11 @@ class RequestIndex extends Component {
         return (
             <Layout>
                 <h3>List of Requests for this campaign:</h3>
+                <Link route={`/campaigns/${this.props.address}/requests/new`}>
+                    <a>
+                        <Button primary floated='right' style={{ marginBottom: '10px' }}>Add Request</Button>
+                    </a>
+                </Link>
                 <Table celled>
                     <Header>
                         <Row>
@@ -60,12 +72,9 @@ class RequestIndex extends Component {
                         {this.renderRows()}
                     </Body>
                 </Table>
-                <Link route={`/campaigns/${this.props.address}/requests/new`}>
-                    <a>
-                        <Button primary>Add Request</Button>
-                    </a>
-                </Link>
-            </Layout>
+
+                <p>We have a total of {this.props.requests.length} requests.</p>
+            </Layout >
         )
     }
 }
